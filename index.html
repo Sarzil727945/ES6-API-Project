@@ -11,12 +11,31 @@
           <h1 class="text-center mt-1">Welcome my my Phone Hunter</h1>
      </header>
      <section class="container mt-5">
-      <form>
+      <section>
         <div class="mb-3">
-          <input id="input-field" type="text" class="form-control w-50" id="exampleFormControlInput1" placeholder="Search your Phone">
+          <input id="input-field" type="text" class="form-control w-50"  placeholder="Search your Phone">
           <button id="btn-search" type="button" class="btn btn-primary my-1">Search</button>
         </div>
-       </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="release-date" class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+        </div>
+        
+      </section>
        <!-- display from end  -->
          <div id="cardMainSection" class="row row-cols-1 row-cols-md-3 g-4 mt-3"> 
          </div>
