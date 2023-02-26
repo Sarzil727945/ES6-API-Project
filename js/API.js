@@ -1,13 +1,20 @@
-const loadUser = async(searchText) =>{
+const loadUser = async(searchText, sameCode) =>{
      const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
      const res = await fetch(url);
      const data = await res.json();
-     displayUser(data.data);
+     displayUser(data.data , sameCode);
 }
-const displayUser = usersArray =>{
+const displayUser = (usersArray, sameCode) =>{
      const mainSection = document.getElementById('cardMainSection');
      mainSection.textContent = ' ';
-     usersArray = usersArray.slice(0,10);
+     const showButton = document.getElementById("show-all");
+     if(sameCode && usersArray.length > 10){
+          usersArray = usersArray.slice(0,10);
+          showButton.classList.remove('d-none'); 
+     }
+     else{
+          showButton.classList.add('d-none');  
+     }
      const noPhone = document.getElementById('no-phone');
      if (usersArray.length == 0) {
           noPhone.classList.remove('d-none');
@@ -30,14 +37,18 @@ const displayUser = usersArray =>{
           `
           mainSection.appendChild(addDiv);
      });
-     toggleLoader(false);
+     toggleLoader(false);  
 }
 
-document.getElementById('btn-search').addEventListener('click', function(){
+const sameCode = showData =>{
      toggleLoader(true);
      const inputField = document.getElementById('input-field');
      const inputString = inputField.value;
-     loadUser(inputString);
+     loadUser(inputString , showData);
+}
+
+document.getElementById('btn-search').addEventListener('click', function(){
+     sameCode(10);
 })
 
 const toggleLoader = isLoading =>{
@@ -49,3 +60,7 @@ const toggleLoader = isLoading =>{
           loader.classList.add('d-none');
      }
 }
+
+document.getElementById('btn-showAll').addEventListener('click', function(){
+     sameCode();
+})
